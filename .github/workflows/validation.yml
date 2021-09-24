@@ -15,7 +15,6 @@ jobs:
         name: diff
         run: |
           LINKS=""
-          GITHUB_CHANGES=$(git diff origin/main --unified=0 --output-indicator-new=# --output-indicator-old=# -- repos-github.md)
           GITHUB_CHANGES=$(git diff origin/${{ github.event.repository.default_branch }} --unified=0 --output-indicator-new=# --output-indicator-old=# -- repos-github.md)
           if [[ "$GITHUB_CHANGES" ]]; then
             GITHUB_CHANGES=$(echo "$GITHUB_CHANGES" | grep '^#' | sed 's/#- //' | uniq)
